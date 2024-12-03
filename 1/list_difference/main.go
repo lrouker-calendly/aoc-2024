@@ -51,6 +51,20 @@ func compute_difference(listA []float64, listB []float64) float64 {
 	return difference
 }
 
+func compute_similarity(listA []float64, listB []float64) float64 {
+	var similarity float64
+	for _, item1 := range listA {
+		this_similarity := 0.0
+		for _, item2 := range listB {
+			if item1 == item2 {
+				this_similarity += 1
+			}
+		}
+		similarity = similarity + (this_similarity * item1)
+	}
+	return similarity
+}
+
 func main() {
 	fmt.Println("Computing difference between two lists")
 	lists := read_file("input.txt")
@@ -63,6 +77,6 @@ func main() {
 	sort.Float64s(listA)
 	sort.Float64s(listB)	
 
-	fmt.Printf("%f\n", compute_difference(listA, listB))
+	fmt.Printf("%f\n", compute_similarity(listA, listB))
 	
 }
